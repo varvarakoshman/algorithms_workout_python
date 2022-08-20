@@ -1,4 +1,4 @@
-def findThreeLargestNumbers(array):
+def fin_three_largest_numbers(array):
     output = [float('-inf')] * 3
     for num in array:
         update_largest(output, num)
@@ -21,4 +21,4 @@ def update_largest(output, num):
 
 
 if __name__ == '__main__':
-    assert findThreeLargestNumbers([10, 5, 9, 10, 12]) == [10, 10, 12]
+    assert fin_three_largest_numbers([10, 5, 9, 10, 12]) == [10, 10, 12]

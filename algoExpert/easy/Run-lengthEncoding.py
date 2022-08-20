@@ -1,4 +1,4 @@
-def runLengthEncoding(string):
+def run_length_encoding(string):
     index_char_mapping = get_chars_mapping(string)
     output = str()
     indices = list(index_char_mapping.keys())
@@ -31,19 +31,19 @@ def get_new_seq(char, cur_len):
         single_full_seq = "9" + char
         return single_full_seq * full_seq_num + str(remaining_num) + char
 
+    # complexity: O(n)
+    # space complexity: O(n)
+
 
 if __name__ == '__main__':
-    assert runLengthEncoding("AAA") == "3A"
-    assert runLengthEncoding("AAAB") == "3A1B"
-    assert runLengthEncoding("AAAAAAAAAAAA") == "9A3A"
-    assert runLengthEncoding("AAAAAAAAAAAAABBCCCCDD") == "9A4A2B4C2D"
-    assert runLengthEncoding("A") == "1A"
-    assert runLengthEncoding("AAAAAAAAA") == "9A"
+    assert run_length_encoding("AAA") == "3A"
+    assert run_length_encoding("AAAB") == "3A1B"
+    assert run_length_encoding("AAAAAAAAAAAA") == "9A3A"
+    assert run_length_encoding("AAAAAAAAAAAAABBCCCCDD") == "9A4A2B4C2D"
+    assert run_length_encoding("A") == "1A"
+    assert run_length_encoding("AAAAAAAAA") == "9A"
 
     # 0: A
     #
     # 0: A
     # 3: B
-
-    # complexity: O(n)
-    # space compexity: O(n)

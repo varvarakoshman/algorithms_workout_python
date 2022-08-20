@@ -1,4 +1,4 @@
-def sortedSquaredArray(array):
+def sorted_squared_array(array):
     squared_array = []
     if array[0] >= 0:
         first_positive_index = 0
@@ -27,11 +27,11 @@ def get_first_positive_index(array):
 
 
 if __name__ == '__main__':
-    print(sortedSquaredArray([1, 2, 3]))
-    print(sortedSquaredArray([-3, -2, -1]))
-    print(sortedSquaredArray([0, 0, 0]))
-    print(sortedSquaredArray([-6, 1, 2, 3]))
-    print(sortedSquaredArray([-5, -3, 2, 4]))
-    print(sortedSquaredArray([-5, -3, 2, 4, 6]))
-    print(sortedSquaredArray([-7, -5, -3, 4, 6]))
-    print(sortedSquaredArray([-11, -2, -1, 0]))
+    print(sorted_squared_array([1, 2, 3]))
+    print(sorted_squared_array([-3, -2, -1]))
+    print(sorted_squared_array([0, 0, 0]))
+    print(sorted_squared_array([-6, 1, 2, 3]))
+    print(sorted_squared_array([-5, -3, 2, 4]))
+    print(sorted_squared_array([-5, -3, 2, 4, 6]))
+    print(sorted_squared_array([-7, -5, -3, 4, 6]))
+    print(sorted_squared_array([-11, -2, -1, 0]))
