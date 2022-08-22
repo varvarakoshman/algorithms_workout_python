@@ -21,8 +21,8 @@ def swap(array, i, j):
     array[i] = array[j]
     array[j] = temp
 
-    # complexity: O(?)
-    # space complexity: O(?)
+    # complexity: O(n^2)
+    # space complexity: O(1)
 
 
 if __name__ == '__main__':
