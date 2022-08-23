@@ -1,14 +1,21 @@
-def node_depths(root):
-    return depth_first_search(root, 0)
+def branch_sums(root):
+    sums = []
+    fill_branch_sums_dfs(root, 0, sums)
+    return sums
 
 
-def depth_first_search(node, depth):
+def fill_branch_sums_dfs(node, curr_sum, sums):
     if node is None:
-        return 0
-    return depth + depth_first_search(node.left, depth + 1) + depth_first_search(node.right, depth + 1)
+        return
+    if node.left is None and node.right is None:
+        sums.append(curr_sum + node.value)
+    else:
+        curr_sum += node.value
+        fill_branch_sums_dfs(node.left, curr_sum, sums)
+        fill_branch_sums_dfs(node.right, curr_sum, sums)
 
 
-# This is the class of the input binary tree.
+# This is the class of the input root. Do not edit it.
 class BinaryTree:
     def __init__(self, value):
         self.value = value
@@ -16,7 +23,7 @@ class BinaryTree:
         self.right = None
 
     # complexity: O(n)
-    # space complexity: O(h)
+    # space complexity: O(n)
 
 
 def get_root_test_tree():
@@ -37,15 +44,17 @@ def get_root_test_tree():
     node9 = BinaryTree(9)
     node4.left = node8
     node4.right = node9
+    node10 = BinaryTree(10)
+    node5.left = node10
     return node1
     #          1
     #       /    \
     #      2      3
     #    /  \    /  \
     #   4    5  6    7
-    #  /  \
-    # 8    9
+    #  / \   /
+    # 8   9  10
 
 
 if __name__ == '__main__':
-    assert node_depths(get_root_test_tree()) == 16
+    assert branch_sums(get_root_test_tree()) == [15, 16, 18, 10, 11]
