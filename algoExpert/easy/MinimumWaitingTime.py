@@ -1,9 +1,10 @@
 def minimum_waiting_time(queries):
     queries.sort()
     total_time = 0
-
+    prev_sum = queries[0]
     for i in range(1, len(queries)):
-        total_time += sum(queries[:i])
+        total_time += prev_sum
+        prev_sum += queries[i]
     return total_time
 
     # complexity: O(n * log(n))
