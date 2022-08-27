@@ -1,3 +1,4 @@
+# Solution 1
 def two_number_sum(array, targetSum):
     differences = set()
     for elem in array:
@@ -11,6 +12,7 @@ def two_number_sum(array, targetSum):
     # space complexity: O(n)
 
 
+# Solution 2
 def two_number_sum_2(array, targetSum):
     # target = 10
     # [3, 5, -4, 8, 11, 1, -1, 6] => [-4, -1, 1, 3, 5, 6, 8, 11]

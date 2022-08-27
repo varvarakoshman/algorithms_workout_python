@@ -1,7 +1,8 @@
+# Solution 1
 def is_valid_subsequence(array, sequence):
     pointer_array = 0
     pointer_seq = 0
-    while pointer_seq < len(sequence) and pointer_seq < len(array) and pointer_array < len(array):
+    while pointer_seq < len(sequence) and pointer_array < len(array):
         if sequence[pointer_seq] == array[pointer_array]:
             pointer_seq += 1
         pointer_array += 1
@@ -9,6 +10,17 @@ def is_valid_subsequence(array, sequence):
 
     # complexity: O(n)
     # space complexity: O(1)
+
+
+# Solution 2
+def is_valid_subsequence_2(array, sequence):
+    pointer_seq = 0
+    for elem in array:
+        if elem == sequence[pointer_seq]:
+            pointer_seq += 1
+        if pointer_seq == len(sequence):
+            return True
+    return False
 
 
 if __name__ == '__main__':
