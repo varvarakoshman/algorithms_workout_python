@@ -1,10 +1,10 @@
 def two_number_sum(array, targetSum):
-    diff_map = {}
+    differences = set()
     for elem in array:
-        if elem in diff_map.keys():
-            return [elem, diff_map[elem]]
+        if elem in differences:
+            return [elem, targetSum - elem]
         else:
-            diff_map[targetSum - elem] = elem
+            differences.add(targetSum - elem)
     return []
 
     # complexity: O(n)
