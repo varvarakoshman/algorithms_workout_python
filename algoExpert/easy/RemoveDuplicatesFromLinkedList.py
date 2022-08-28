@@ -9,7 +9,8 @@ class LinkedList:
         return False
 
 
-def remove_duplicates_from_linkedlist(linkedlist):
+# Solution 1
+def remove_duplicates_from_linkedlist_2(linkedlist):
     prev = LinkedList(None)
     head = linkedlist
     while head is not None:
@@ -18,6 +19,22 @@ def remove_duplicates_from_linkedlist(linkedlist):
         else:
             prev = head
         head = head.next
+    return linkedlist
+
+    # complexity: O(n)
+    # space complexity: O(1)
+
+
+# Solution 2 - jump over all duplicate values at once (a lower number of a pointer's changes)
+# 1 -> 1 -> 3 -> 4 -> 4 -> 4 -> 5 -> 6 -> 6
+def remove_duplicates_from_linkedlist(linkedlist):
+    curr_node = linkedlist
+    while curr_node is not None:
+        next_distinct = curr_node.next
+        while next_distinct is not None and next_distinct.value == curr_node.value:
+            next_distinct = next_distinct.next
+        curr_node.next = next_distinct
+        curr_node = next_distinct
     return linkedlist
 
     # complexity: O(n)

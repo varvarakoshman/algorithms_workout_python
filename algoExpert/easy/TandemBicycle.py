@@ -1,10 +1,10 @@
 def tandem_bicycle(redShirtSpeeds, blueShirtSpeeds, fastest):
-    if fastest:
-        redShirtSpeeds.sort(reverse=True)
-        blueShirtSpeeds.sort()
-    else:
-        redShirtSpeeds.sort()
-        blueShirtSpeeds.sort()
+    redShirtSpeeds.sort(reverse=fastest)
+    blueShirtSpeeds.sort()
+    return get_speed_sum(redShirtSpeeds, blueShirtSpeeds)
+
+
+def get_speed_sum(redShirtSpeeds, blueShirtSpeeds):
     speed_sum = 0
     for i in range(len(redShirtSpeeds)):
         speed_sum += max(redShirtSpeeds[i], blueShirtSpeeds[i])
