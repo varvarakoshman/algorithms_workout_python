@@ -1,18 +1,19 @@
+# [8, 5, 2, 9, 5, 6, 3] - iterate backwards and insert each new number
+# into an already sorted list at the start
+# [[8], 5, 2, 9, 5, 6, 3]
+# [[5, 8], 2, 9, 5, 6, 3]
+# [[2, 5, 8], 9, 5, 6, 3]
+# [[2, 5, 8, 9], 5, 6, 3] ...
 def insertion_sort(array):
-    for index in range(1, len(array)):
-        inner_index = index - 1
-        while inner_index >= 0:
-            if array[index] < array[inner_index]:
-                swap(array, index, inner_index)
-                index = inner_index
-            inner_index -= 1
+    for idx in range(1, len(array)):
+        while idx > 0 and array[idx] < array[idx - 1]:
+            swap(array, idx - 1, idx)
+            idx -= 1
     return array
 
 
 def swap(array, i, j):
-    temp = array[i]
-    array[i] = array[j]
-    array[j] = temp
+    array[i], array[j] = array[j], array[i]
 
     # complexity: O(n^2)
     # space complexity: O(1)

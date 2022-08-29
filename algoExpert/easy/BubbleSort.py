@@ -1,13 +1,19 @@
+# [8, 5, 2, 9, 5, 6, 3]
 def bubble_sort(array):
-    for current_index in range(len(array)):
-        for index in range(len(array)):
-            if current_index == index:
-                continue
-            if array[current_index] < array[index]:
-                temp = array[index]
-                array[index] = array[current_index]
-                array[current_index] = temp
+    is_sorted = False
+    counter = 0
+    while not is_sorted:
+        is_sorted = True
+        for inner_index in range(len(array) - 1 - counter):
+            if array[inner_index] > array[inner_index + 1]:
+                swap(array, inner_index, inner_index + 1)
+                is_sorted = False
+        counter += 1
     return array
+
+
+def swap(array, left, right):
+    array[left], array[right] = array[right], array[left]
 
     # complexity: O(N^2)
     # space complexity: O(1)
