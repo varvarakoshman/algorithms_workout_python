@@ -1,16 +1,15 @@
 def binary_search(array, target):
     left = 0
-    right = len(array)
-    while left < right:
-        middle = left + (right - left) // 2
-        if target == array[middle]:
+    right = len(array) - 1
+    while left <= right:
+        middle = (left + right) // 2
+        potential_match = array[middle]
+        if target == potential_match:
             return middle
-        if left == middle or right == middle:
-            break
-        if target > array[middle]:
-            left = middle
+        if target > potential_match:
+            left = middle + 1
         else:
-            right = middle
+            right = middle - 1
     return -1
 
     # complexity: O(logN)

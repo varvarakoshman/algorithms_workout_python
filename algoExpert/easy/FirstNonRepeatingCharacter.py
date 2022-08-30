@@ -1,3 +1,19 @@
+# Solution 1 (brute force)
+def first_non_repeating_character_(string):
+    for index in range(len(string)):
+        is_found = False
+        for inner_index in range(len(string)):
+            if string[inner_index] == string[index] and inner_index != index:
+                is_found = True
+        if not is_found:
+            return index
+    return -1
+
+    # complexity: O(n^2)
+    # space complexity: O(1)
+
+
+# Solution 2 (optimal)
 def first_non_repeating_character(string):
     char_count = {}
     for index, char in enumerate(string):
