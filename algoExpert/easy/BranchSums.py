@@ -23,7 +23,7 @@ class BinaryTree:
         self.right = None
 
     # complexity: O(n)
-    # space complexity: O(n)
+    # space complexity: O(n + n/2) = O(n)
 
 
 def get_root_test_tree():

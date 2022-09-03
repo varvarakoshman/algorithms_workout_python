@@ -10,8 +10,10 @@ def product_sum_recursive(array, depth):
         if type(elem) == int:
             inner_sum += elem
         else:
-            inner_sum += (depth + 1) * product_sum_recursive(elem, depth + 1)
-    return inner_sum
+            # inner_sum += (depth + 1) * product_sum_recursive(elem, depth + 1)
+            inner_sum += product_sum_recursive(elem, depth + 1)
+    # return inner_sum
+    return depth * inner_sum
 
     # complexity: O(n)
     # space complexity: O(d), d - greatest depth of "special" arrays in an array
