@@ -1,11 +1,8 @@
-def node_depths(root):
-    return depth_first_search(root, 0)
-
-
-def depth_first_search(node, depth):
-    if node is None:
+# Solution 1 (recursive)
+def node_depths_1(root, depth=0):
+    if root is None:
         return 0
-    return depth + depth_first_search(node.left, depth + 1) + depth_first_search(node.right, depth + 1)
+    return depth + node_depths_1(root.left, depth + 1) + node_depths_1(root.right, depth + 1)
 
 
 # This is the class of the input binary tree.
@@ -16,7 +13,26 @@ class BinaryTree:
         self.right = None
 
     # complexity: O(n)
-    # space complexity: O(h)
+    # space complexity: O(h), h - height, h=n at worst case
+
+
+# Solution 2 (iterative with a stack)
+def node_depths(root):
+    stack = [{"node": root, "depth": 0}]
+    total_sum = 0
+    while len(stack) > 0:
+        top_vertex = stack.pop()
+        node, depth = top_vertex["node"], top_vertex["depth"]
+        total_sum += depth
+        if node.left is not None:
+            stack.append({"node": node.left, "depth": depth + 1})
+        if node.right is not None:
+            stack.append({"node": node.right, "depth": depth + 1})
+    return total_sum
+
+    # ~ same ~
+    # complexity: O(n)
+    # space complexity: O(h), h - height, h=n at worst case
 
 
 def get_root_test_tree():
