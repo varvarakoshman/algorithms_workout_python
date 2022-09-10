@@ -1,6 +1,6 @@
 # Solution 1 (optimal): O(w * nlog(n)) time | O(wn) space,
 # w - number of words, n - length of the longest word
-def group_anagrams_(words):
+def group_anagrams(words):
     word_forms = {}
     for word in words:
         sorted_word = ''.join(sorted(word))
@@ -13,7 +13,7 @@ def group_anagrams_(words):
 
 # Solution 2 (alternative: same asymptotic, but harder to implement): O(w * nlog(n)) time | O(wn) space,
 # w - number of words, n - length of the longest word
-def group_anagrams(words):
+def group_anagram_2(words):
     if len(words) == 0:
         return []
     sorted_words = [''.join(sorted(word)) for word in words]
