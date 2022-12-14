@@ -17,12 +17,8 @@ def sumOfLinkedLists(linkedListOne, linkedListTwo):
     remainder = 0
     while linkedListOne is not None or linkedListTwo is not None:
         curr_sum = remainder + get_sum(linkedListOne, linkedListTwo)
-        if curr_sum < 10:
-            new_digit = curr_sum
-            remainder = 0
-        else:
-            new_digit = curr_sum % 10
-            remainder = 1
+        new_digit = curr_sum % 10
+        remainder = curr_sum // 10
 
         new_node = LinkedList(new_digit)
         curr_node.next = new_node
