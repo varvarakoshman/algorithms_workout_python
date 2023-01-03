@@ -20,6 +20,7 @@ def threeNumberSum_1(array, targetSum):
     result.sort()
     return result
 
+
 # Solution 1.2
 # same solution, but different manipulations with pointers
 # O(n^2) time | O(n) space
@@ -42,7 +43,6 @@ def threeNumberSum(array, targetSum):
                 left_pointer += 1
     result.sort()
     return result
-
 
 
 if __name__ == '__main__':
