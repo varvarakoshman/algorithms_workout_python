@@ -13,6 +13,7 @@ def validateBst(tree):
     max = -min
     return validate_bst_helper(tree, min, max)
 
+
 # rule here: each value > values on its left, <= values on its right
 def validate_bst_helper(tree, min, max):
     if tree is None:
@@ -34,3 +35,10 @@ if __name__ == '__main__':
     root.right.right = BST(22)
 
     assert validateBst(root) is True
+    #         10
+    #       /    \
+    #      5      15
+    #    /  \    /  \
+    #   2    5  13  22
+    #  /         \
+    # 1           14
