@@ -28,7 +28,7 @@ def findKthLargestValueInBst_helper(tree, k, target):
     return target, k
 
 
-class TreeInfo():
+class TreeInfo:
     def __init__(self, numberOfNodesVisited, latestVisitedNodeValue):
         self.numberOfNodesVisited = numberOfNodesVisited
         self.latestVisitedNodeValue = latestVisitedNodeValue
