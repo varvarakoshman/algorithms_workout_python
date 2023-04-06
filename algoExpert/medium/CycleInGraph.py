@@ -2,9 +2,16 @@ import unittest
 
 
 # O(|V| + |E|) time | O(|V|) space
+
+WHITE, GREY, BLACK = 0, 1, 2
+
+
 def cycleInGraph(edges):
-    for vertex in range(len(edges)):
-        visited = [0] * len(edges)
+    number_of_nodes = len(edges)
+    visited = [WHITE] * number_of_nodes
+    for vertex in range(number_of_nodes):
+        if visited[vertex] != WHITE:
+            continue
         has_cycle = dfs(vertex, edges, visited)
         if has_cycle:
             return True
@@ -12,16 +19,19 @@ def cycleInGraph(edges):
 
 
 def dfs(vertex, edges, visited):
-    if visited[vertex] == 1:
+    if visited[vertex] == GREY:
         return True
-    visited[vertex] = 1
+    visited[vertex] = GREY
     neighbours = edges[vertex]
     for neighbour in neighbours:
-        if visited[neighbour] != 2:
-            has_cycle = dfs(neighbour, edges, visited)
-            if has_cycle:
-                return True
-    visited[vertex] = 2
+        if visited[neighbour] == GREY:
+            return True
+        if visited[neighbour] != WHITE:
+            continue
+        has_cycle = dfs(neighbour, edges, visited)
+        if has_cycle:
+            return True
+    visited[vertex] = BLACK
     return False
 
 
