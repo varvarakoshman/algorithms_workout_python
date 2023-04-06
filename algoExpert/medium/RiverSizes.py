@@ -3,7 +3,7 @@ import unittest
 
 # O(w * h) time | O(w * h) space, w - matrix's width, h - height
 # Solution 1 (my initial) (modifying the input)
-def riverSizes(matrix):
+def riverSizes_0(matrix):
     river_sizes = []
     for row in range(len(matrix)):
         for column in range(len(matrix[0])):
@@ -30,6 +30,45 @@ def dfs(x, y, matrix, count):
     return count
 
 
+# Solution 2 (iterative approach with no modifications to inout data)
+# same time and space complexity
+# O(w * h) time | O(w * h) space, w - matrix's width, h - height
+def riverSizes(matrix):
+    n_rows = len(matrix)
+    n_columns = len(matrix[0])
+    visited = [[False for _ in range(n_columns)] for _ in range(n_rows)]
+    river_sizes = []
+    for x in range(n_rows):
+        for y in range(n_columns):
+            if not visited[x][y] and matrix[x][y] == 1:
+                river_sizes.append(find_river_size(x, y, matrix, visited))
+    return river_sizes
+
+
+def find_river_size(x, y, matrix, visited):
+    curr_river_size = 0
+    neighbours_stack = [[x, y]]
+    while len(neighbours_stack) > 0:
+        curr_node = neighbours_stack.pop()
+        x = curr_node[0]
+        y = curr_node[1]
+        if visited[x][y]:
+            continue
+        if matrix[x][y] == 0:
+            continue
+        if x - 1 >= 0:
+            neighbours_stack.append([x - 1, y])
+        if x + 1 < len(matrix):
+            neighbours_stack.append([x + 1, y])
+        if y - 1 >= 0:
+            neighbours_stack.append([x, y - 1])
+        if y + 1 < len(matrix[0]):
+            neighbours_stack.append([x, y + 1])
+        curr_river_size += 1
+        visited[x][y] = True
+    return curr_river_size
+
+
 class TestProgram(unittest.TestCase):
     def test_case_1(self):
         testInput = [[1, 0, 0, 1, 0],
@@ -41,9 +80,9 @@ class TestProgram(unittest.TestCase):
         self.assertEqual(sorted(riverSizes(testInput)), expected)
 
         testInput = [[1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0],
-                    [1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0],
-                    [0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1],
-                    [1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0],
-                    [1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1]]
+                     [1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0],
+                     [0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1],
+                     [1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0],
+                     [1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1]]
         expected = [2, 1, 21, 5, 2, 1]
         self.assertEqual(sorted(riverSizes(testInput)), sorted(expected))
