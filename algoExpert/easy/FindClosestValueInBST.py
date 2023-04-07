@@ -1,4 +1,6 @@
-def find_closest_value_in_bst(tree, target):
+# Solution 1 (recursive)
+# O(n) time | O(n) space
+def find_closest_value_in_bst_(tree, target):
     return depth_first_search(tree, target).value
 
 
@@ -9,15 +11,26 @@ def depth_first_search(node, target):
                depth_first_search(node.right, target), key=lambda n: abs(n.value - target))
 
 
+# Solution 2 - optimal, iterative
+# O(logn) time | O(1) space
+def find_closest_value_in_bst(tree, target):
+    curr_min = None
+    min_diff = float("inf")
+    while tree is not None:
+        curr_diff = target - tree.value
+        if abs(curr_diff) < min_diff:
+            min_diff = abs(curr_diff)
+            curr_min = tree
+        tree = tree.left if curr_diff < 0 else tree.right
+    return curr_min.value
+
+
 # This is the class of the input tree. Do not edit.
 class BST:
     def __init__(self, value):
         self.value = value
         self.left = None
         self.right = None
-
-    # complexity: O(|v| + |e|)
-    # space complexity: O(1)
 
 
 def get_root_test_tree():
