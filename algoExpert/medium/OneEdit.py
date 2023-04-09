@@ -3,24 +3,25 @@ import unittest
 
 # O(n) time | O(1) space, n - length of the shortest string
 def oneEdit(stringOne, stringTwo):
-    edit_count = 0
-    if abs(len(stringOne) - len(stringTwo)) > 1:
+    length_one, length_two = len(stringOne), len(stringTwo)
+    if abs(length_one - len(stringTwo)) > 1:
         return False
+    edit_count = 0
     pointerOne = pointerTwo = 0
-    while pointerOne < len(stringOne) and pointerTwo < len(stringTwo):
+    while pointerOne < length_one and pointerTwo < length_two:
         if edit_count > 1:
             return False
         if stringOne[pointerOne] != stringTwo[pointerTwo]:
             edit_count += 1
-            if len(stringOne) != len(stringTwo):
-                if len(stringOne) > len(stringTwo):
+            if length_one != length_two:
+                if length_one > length_two:
                     pointerOne += 1
                 else:
                     pointerTwo += 1
                 continue
         pointerOne += 1
         pointerTwo += 1
-    if pointerOne != len(stringOne) or pointerTwo != len(stringTwo):
+    if pointerOne != length_one or pointerTwo != length_two:
         edit_count += 1
     return edit_count <= 1
 
