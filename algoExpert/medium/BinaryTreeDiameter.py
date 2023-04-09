@@ -9,6 +9,8 @@ class BinaryTree:
         self.right = right
 
 
+# Solution 1 (my initial)
+# O(n) time | O(h) space
 def binaryTreeDiameter(tree):
     tree_info = TreeInfo()
     dfs(tree, tree_info, 1)
@@ -20,7 +22,6 @@ class TreeInfo:
         self.diameter = 0
 
 
-# O(n) time | O(h) space
 def dfs(node, tree_info, depth):
     if node.left is None and node.right is None:
         return depth
@@ -36,6 +37,33 @@ def dfs(node, tree_info, depth):
     tree_info.diameter = max(tree_info.diameter, curr_path_len)
 
     return max(left_longest_path, right_longest_path)
+
+############################################################
+# Solution 2 (from video explanation)
+# O(n) time | O(h) space
+def binaryTreeDiameter_2(tree):
+    return getTreeInfo(tree).diameter
+
+
+def getTreeInfo(tree):
+    if tree is None:
+        return TreeInfo_2(0, 0)
+
+    leftTreeInfo = getTreeInfo(tree.left)
+    rightTreeInfo = getTreeInfo(tree.right)
+
+    longestPathThroughRoot = leftTreeInfo.height + rightTreeInfo.height
+    maxDiameterSoFar = max(leftTreeInfo.diameter, rightTreeInfo.diameter)
+    currentDiameter = max(longestPathThroughRoot, maxDiameterSoFar)
+    currentHeight = 1 + max(leftTreeInfo.height, rightTreeInfo.height)
+
+    return TreeInfo_2(currentDiameter, currentHeight)
+
+
+class TreeInfo_2:
+    def __init__(self, diameter, height):
+        self.diameter = diameter
+        self.height = height
 
 
 class TestProgram(unittest.TestCase):
