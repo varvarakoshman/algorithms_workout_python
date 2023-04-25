@@ -1,3 +1,4 @@
+# O(n) time | O(1) space
 def isPalindrome(s):
     if len(s) == 1:
         return True
