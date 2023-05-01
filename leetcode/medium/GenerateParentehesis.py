@@ -1,4 +1,6 @@
-# TODO: add complexity analysis
+# number of output string for a given number: (2*n)! / ((n + 1)!*n!)   (Catalan number)
+# O((2*n)! / ((n + 1)!*n!)) time
+# O((2*n)! / ((n + 1)!*n!)) space
 class Solution(object):
     def generateParenthesis(self, k):
         resulting_sequence, curr_stack = [], []
