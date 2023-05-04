@@ -1,4 +1,4 @@
-# O(n) time | O(1) space
+# O(n^2) time | O(1) space
 class Solution(object):
     def threeSumClosest(self, nums, target):
         nums.sort()
