@@ -32,3 +32,4 @@ if __name__ == '__main__':
         assert solution.rob([1, 1, 1, 1, 1]) == 3
         assert solution.rob([1, 5]) == 5
         assert solution.rob([5, 0]) == 5
+        assert solution.rob([5, 2, 4, 1, 2, 8]) == 17
