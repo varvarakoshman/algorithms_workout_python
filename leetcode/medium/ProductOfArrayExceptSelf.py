@@ -1,6 +1,20 @@
 import unittest
 
 
+# optimal solution - (resulting array doesn't count as extra space)
+# O(n) time | O(1) space
+class Solution:
+    def productExceptSelf(self, nums):
+        answer = [1] * len(nums)
+        for i in range(1, len(nums)):
+            answer[i] = answer[i - 1] * nums[i - 1]
+        right_product = 1
+        for i in range(len(nums) - 1, -1, -1):
+            answer[i] = answer[i] * right_product
+            right_product *= nums[i]
+        return answer
+
+
 # O(n) time | O(n) space
 def productExceptSelf(nums):
     prefix = get_prefix(nums)
@@ -30,6 +44,32 @@ def get_postfix(nums):
         product *= nums[i]
         postfix[i] = product
     return postfix
+
+
+# # O(n) time | O(n) space
+# class Solution:
+#     def productExceptSelf(self, nums: List[int]) -> List[int]:
+#         left_products = self.get_left_products(nums)
+#         right_products = self.get_right_products(nums)
+#
+#         answer = []
+#         for i in range(len(nums)):
+#             answer.append(left_products[i] * right_products[i])
+#         return answer
+#
+#
+#     def get_left_products(self, nums):
+#         left_products = [1] * len(nums)
+#         for i in range(1, len(nums)):
+#             left_products[i] = left_products[i - 1] * nums[i - 1]
+#         return left_products
+#
+#
+#     def get_right_products(self, nums):
+#         right_products = [1] * len(nums)
+#         for i in range(len(nums) - 2, -1, -1):
+#             right_products[i] = right_products[i + 1] * nums[i + 1]
+#         return right_products
 
 
 class TestProgram(unittest.TestCase):
