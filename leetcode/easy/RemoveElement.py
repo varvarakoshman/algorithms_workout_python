@@ -19,6 +19,24 @@ def removeElement(nums, val):
         del nums[right_pointer]
         right_pointer -= 1
 
+# a better approach ....
+# // O(n) time | O(1) space
+# class Solution {
+#     public int removeElement(int[] nums, int val) {
+#         int i = 0;
+#         int k = nums.length;
+#         while (i < k) {
+#             if (nums[i] == val) {
+#                 nums[i] = nums[k - 1];
+#                 k--;
+#             } else {
+#                 i++;
+#             }
+#         }
+#         return k;
+#     }
+# }
+
 
 class TestProgram(unittest.TestCase):
     def test_case_1(self):
