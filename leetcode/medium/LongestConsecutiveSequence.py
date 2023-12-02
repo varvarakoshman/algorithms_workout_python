@@ -1,21 +1,27 @@
 import unittest
+from typing import (
+    List,
+)
 
 
 # O(n) time | O(n) space
 class Solution(object):
-    def longestConsecutive(self, nums):
-        longest_len = 0
-        values_set, already_seen = set(), set()
+    def longestConsecutive(self, nums: List[int]) -> int:
+        unique_nums = set()
         for num in nums:
-            values_set.add(num)
+            unique_nums.add(num)
+
+        max_len = 0
         for num in nums:
-            if num - 1 not in values_set and num not in already_seen:
-                curr_len = 1
-                while num + curr_len in values_set:
-                    curr_len += 1
-                already_seen.add(num)
-                longest_len = max(longest_len, curr_len)
-        return longest_len
+            if num + 1 in unique_nums:
+                continue
+            curr_len = 0
+            while num in unique_nums:
+                curr_len += 1
+                num -= 1
+            max_len = max(max_len, curr_len)
+
+        return max_len
 
 
 class MyTestCase(unittest.TestCase):
