@@ -1,6 +1,8 @@
+import math
+
 # O(m * n) time | O(m * n) space
 class Solution:
-    def spiralOrder(self, matrix):
+    def spiralOrder_1(self, matrix):
         LEFT_BORDER, RIGHT_BORDER = 0, len(matrix[0]) - 1
         TOP_BORDER, BOTTOM_BORDER = 0, len(matrix) - 1
         spirals_count = 0
@@ -22,6 +24,32 @@ class Solution:
             TOP_BORDER += 1
             BOTTOM_BORDER -= 1
         return all_elements
+
+    def spiralOrder(self, matrix):
+        left_bound, right_bound = 0, len(matrix[0]) - 1
+        lower_bound, upper_bound = len(matrix) - 1, 0
+
+        n_spirals = math.ceil(min(right_bound + 1, lower_bound + 1) / 2)
+        result = []
+        for i in range(n_spirals):
+            for j in range(left_bound, right_bound + 1):
+                result.append(matrix[upper_bound][j])
+            upper_bound += 1
+
+            for j in range(upper_bound, lower_bound + 1):
+                result.append(matrix[j][right_bound])
+            right_bound -= 1
+
+            if lower_bound >= upper_bound:
+                for j in range(right_bound, left_bound - 1, -1):
+                    result.append(matrix[lower_bound][j])
+            lower_bound -= 1
+
+            if left_bound <= right_bound:
+                for j in range(lower_bound, upper_bound - 1, -1):
+                    result.append(matrix[j][left_bound])
+            left_bound += 1
+        return result
 
 
 if __name__ == '__main__':
