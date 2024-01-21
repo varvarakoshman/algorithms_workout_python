@@ -1,4 +1,7 @@
 # O(log(m) + log(n)) time | O(1) space
+from typing import List
+
+
 def searchMatrix(matrix, target):
     top_row, bottom_row = 0, len(matrix) - 1
     middle_idx = 0
@@ -30,6 +33,26 @@ def contains_with_bin_search(row, target):
         else:
             return True
     return False
+
+
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        m_rows = len(matrix)
+        n_columns = len(matrix[0])
+        right = m_rows * n_columns - 1
+        left = 0
+        while left <= right:
+            middle = left + (right - left) // 2
+            row = middle // n_columns
+            column = middle % n_columns
+            curr = matrix[row][column]
+            if target > curr:
+                left = middle + 1
+            elif target < curr:
+                right = middle - 1
+            else:
+                return True
+        return False
 
 
 if __name__ == '__main__':
